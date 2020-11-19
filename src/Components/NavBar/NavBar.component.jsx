@@ -1,17 +1,35 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import {
+    Drawer,
+    Avatar,
+    AppBar,
+    Toolbar,
+    List,
+    CssBaseline,
+    Typography,
+    Divider,
+    IconButton,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Tooltip} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications"
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import InsertChartIcon from '@material-ui/icons/InsertChart';
+import PersonIcon from '@material-ui/icons/Person';
+import HelpIcon from '@material-ui/icons/Help';
 
-import HomePage from "../../Pages/Home/HomePage";
+import {useHistory} from 'react-router-dom';
+
+import profileImage from '../../Images/profile.jpg';
+
 
 const drawerWidth = 240;
 
@@ -68,7 +86,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
     content: {
@@ -85,6 +102,7 @@ function NavBar() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const history = useHistory();
     
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -93,16 +111,13 @@ function NavBar() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-
-    const menuId = 'primary-search-account-menu';
-    
-    
     
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" className={clsx(classes.appBar, {[classes.appBarShift]: open,})}>
+            <AppBar position="fixed" color="default" className={clsx(classes.appBar, {[classes.appBarShift]: open})}>
                 <Toolbar>
+                    <Tooltip title='Menu'>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -113,22 +128,22 @@ function NavBar() {
                         })}>
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap className={classes.mainTitle}>Taskr - Get It Done!</Typography>
+                    </Tooltip>
+                    <Typography variant="h6" noWrap className={classes.mainTitle}>Taskr</Typography>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
+                        <Tooltip title='Notifications'>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
                             <Badge badgeContent={17} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
                         </IconButton>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            color="inherit">
-                            <AccountCircle />
+                        </Tooltip>
+                        <Tooltip title='Profile'>
+                        <IconButton>
+                            <Avatar src={profileImage} />
                         </IconButton>
+                        </Tooltip>
                     </div>
                 </Toolbar>
             </AppBar>
@@ -150,26 +165,54 @@ function NavBar() {
                 </div>
                 <Divider />
                 <List>
-                    {['Dashboard', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button onClick={() => history.push("/")}>
+                        <Tooltip title='Dashboard'>
+                        <ListItemIcon>
+                            <DashboardIcon />
+                        </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="Dashboard" />
+                    </ListItem>
+                    <ListItem button onClick={() => history.push("/tasks")}>
+                        <Tooltip title='Tasks'>
+                        <ListItemIcon>
+                            <FormatListBulletedIcon />
+                        </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="Tasks" />
+                    </ListItem>
+                    <ListItem button onClick={() => history.push("/analytics")}>
+                        <Tooltip title='Analytics'>
+                        <ListItemIcon>
+                            <InsertChartIcon />
+                        </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="Analytics" />
+                    </ListItem>
                 </List>
                 <Divider />
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button onClick={() => history.push("/user-profile")}>
+                        <Tooltip title='User Profile'>
+                        <ListItemIcon>
+                            <PersonIcon />
+                        </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="User Profile" />
+                    </ListItem>
+                    <ListItem button onClick={() => history.push("/help")}>
+                        <Tooltip title='Help'>
+                        <ListItemIcon>
+                            <HelpIcon />
+                        </ListItemIcon>
+                        </Tooltip>
+                        <ListItemText primary="Help" />
+                    </ListItem>
                 </List>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />
-                <HomePage />
+
             </main>
         </div>
     );
