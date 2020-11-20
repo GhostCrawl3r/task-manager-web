@@ -1,11 +1,36 @@
 import React from 'react';
 import styles from './Dashboard.module.css';
+import {Typography, Divider, Grid, IconButton} from "@material-ui/core";
+import CachedOutlinedIcon from '@material-ui/icons/CachedOutlined';
+
+import LineChartComponent from "../../Components/Dashboard/LineChart/LineChartComponent.component";
+import TopBoxes from "../../Components/Dashboard/TopBoxes/TopBoxes.component";
+// import RadarChart from "../../Components/Dashboard/RadarChart/RadarChart.component";
+
 
 const Dashboard = () => {
     
     return (
         <div className={styles.container}>
-            <h1>Dashboard Page</h1>
+            {/*Title top screen*/}
+            <Grid container direction={'row'}>
+                <Typography variant='h6' className={styles.mainTitle}>Welcome back, Nick.</Typography>
+                <IconButton>
+                    <CachedOutlinedIcon />
+                </IconButton>
+            </Grid>
+            <Divider />
+            {/*4 top cards*/}
+                <TopBoxes/>
+            {/*Graphs*/}
+            <Grid container direction='row' spacing={2}>
+                <Grid container xs={8}>
+                    <LineChartComponent />
+                </Grid>
+                <Grid container xs={4}>
+                    {/*<RadarChart />*/}
+                </Grid>
+            </Grid>
         </div>
     );
 };

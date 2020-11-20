@@ -1,4 +1,8 @@
 .container {
-    background-color: red;
-    margin: 0 10vw;
+    margin: 0 10vw!important;
+}
+
+.mainTitle {
+    flex: 1;
+    margin: 0 0 10px  0 !important;
 }
