@@ -91,12 +91,8 @@ function NavBar() {
     const [profileDropdown, setProfileDropDown] = useState(false);
     const [notificationDropdown, setNotificationDropDown] = useState(false);
     
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    
-    const handleDrawerClose = () => {
-        setOpen(false);
+    const handleDrawerOpen = value => {
+        setOpen(!value);
     };
     
     const handleProfileDropdown = value => {
@@ -116,7 +112,7 @@ function NavBar() {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={() => handleDrawerOpen(open)}
                         edge="start"
                         className={clsx(classes.menuButton, {
                             [classes.hide]: open,
@@ -185,7 +181,7 @@ function NavBar() {
                     }),
                 }}>
                 <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={() => handleDrawerOpen(open)}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
