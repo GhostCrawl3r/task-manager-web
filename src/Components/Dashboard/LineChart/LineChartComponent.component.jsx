@@ -4,8 +4,8 @@ import { Card, Typography, Grid } from '@material-ui/core';
 import styles from './LineChartComponent.module.css';
 
 const data = [
-    {name: 'Monday', uv: 400, pv: 2400, amt: 2400},
-    {name: 'Tuesday', uv: 600, pv: 2400, amt: 2400},
+    {name: 'Monday', uv: 400},
+    {name: 'Tuesday', uv: 600},
     {name: 'Wednesday', uv: 700, pv: 2400, amt: 2400},
     {name: 'Thursday', uv: 200, pv: 2400, amt: 2400},
     {name: 'Friday', uv: 100, pv: 2400, amt: 2400},

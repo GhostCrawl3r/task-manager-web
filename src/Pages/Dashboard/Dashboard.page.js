@@ -5,7 +5,7 @@ import CachedOutlinedIcon from '@material-ui/icons/CachedOutlined';
 
 import LineChartComponent from "../../Components/Dashboard/LineChart/LineChartComponent.component";
 import TopBoxes from "../../Components/Dashboard/TopBoxes/TopBoxes.component";
-// import RadarChart from "../../Components/Dashboard/RadarChart/RadarChart.component";
+import PieChartCom from "../../Components/Dashboard/PieChart/PieChart.component";
 
 
 const Dashboard = () => {
@@ -28,9 +28,15 @@ const Dashboard = () => {
                     <LineChartComponent />
                 </Grid>
                 <Grid container xs={4}>
-                    {/*<RadarChart />*/}
+                    <PieChartCom />
                 </Grid>
             </Grid>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     );
 };
