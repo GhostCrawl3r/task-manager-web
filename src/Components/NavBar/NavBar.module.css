@@ -1,0 +1,13 @@
+.profileContainer {
+    background-color: #F5F5F5!important;
+}
+
+.profileContainer h6 {
+    color: black !important;
+    font-size: 0.7em !important;
+    margin-left: 10px !important;
+}
+
+.button:hover {
+    background-color: blue!important;
+}

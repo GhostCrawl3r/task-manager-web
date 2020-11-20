@@ -1,36 +1,21 @@
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {
-    Drawer,
-    Avatar,
-    AppBar,
-    Toolbar,
-    List,
-    CssBaseline,
-    Typography,
-    Divider,
-    IconButton,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Tooltip} from '@material-ui/core';
+import { Drawer, Menu, MenuItem,  Paper, Grid, Avatar, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, Tooltip,} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Badge from "@material-ui/core/Badge";
-import NotificationsIcon from "@material-ui/icons/Notifications"
+import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import InsertChartIcon from '@material-ui/icons/InsertChart';
 import PersonIcon from '@material-ui/icons/Person';
 import HelpIcon from '@material-ui/icons/Help';
+import styles from './NavBar.module.css';
 
 import {useHistory} from 'react-router-dom';
-
 import profileImage from '../../Images/profile.jpg';
-
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -103,6 +88,8 @@ function NavBar() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
+    const [profileDropdown, setProfileDropDown] = useState(false);
+    const [notificationDropdown, setNotificationDropDown] = useState(false);
     
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -111,6 +98,14 @@ function NavBar() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    
+    const handleProfileDropdown = value => {
+        setProfileDropDown(!value);
+    }
+    
+    const handleNotificationDropdown = value => {
+        setNotificationDropDown(!value);
+    }
     
     return (
         <div className={classes.root}>
@@ -131,19 +126,50 @@ function NavBar() {
                     </Tooltip>
                     <Typography variant="h6" noWrap className={classes.mainTitle}>Taskr</Typography>
                     <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
+                    <div>
+                        <Grid container direction="row">
                         <Tooltip title='Notifications'>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
+                        <IconButton color="inherit" onClick={() => handleNotificationDropdown(notificationDropdown)}>
                             <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon />
+                                <NotificationsNoneOutlinedIcon />
                             </Badge>
                         </IconButton>
                         </Tooltip>
+                            <Menu id="notification-dropdown" anchorOrigin={{vertical: 'top', horizontal: 1250,}}
+                                  keepMounted
+                                  transformOrigin={{
+                                      vertical: 'top',
+                                      horizontal: 'right',
+                                  }}
+                                  open={notificationDropdown}
+                                  onClose={() => handleNotificationDropdown(notificationDropdown)}>
+                                <MenuItem>Notification 1</MenuItem>
+                                <Divider />
+                                <MenuItem>Notification 2</MenuItem>
+                            </Menu>
                         <Tooltip title='Profile'>
-                        <IconButton>
-                            <Avatar src={profileImage} />
-                        </IconButton>
-                        </Tooltip>
+                         <Paper elevation={0} className={styles.profileContainer}>
+                             <Grid container direction="row" alignItems="center">
+                                <IconButton onClick={() => handleProfileDropdown(profileDropdown)}>
+                                    <Avatar src={profileImage} />
+                                    <Typography variant="h6">Nick Morgan</Typography>
+                                </IconButton>
+                             </Grid>
+                        </Paper>
+                    </Tooltip>
+                            <Menu id="profile-dropdown" anchorOrigin={{vertical: 'top', horizontal: 'right',}}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={profileDropdown}
+                                onClose={() => handleProfileDropdown(profileDropdown)}>
+                                <MenuItem onClick={() => handleProfileDropdown(profileDropdown)}>Profile</MenuItem>
+                                <Divider />
+                                <MenuItem onClick={() => handleProfileDropdown(profileDropdown)}>Logout</MenuItem>
+                            </Menu>
+                        </Grid>
                     </div>
                 </Toolbar>
             </AppBar>
