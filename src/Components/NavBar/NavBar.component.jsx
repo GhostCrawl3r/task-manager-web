@@ -91,8 +91,6 @@ function NavBar() {
         history.push(value);
         setOpen(false);
     }
-
-    console.log(window.origin);
     
     return (
         <div className={classes.root}>
