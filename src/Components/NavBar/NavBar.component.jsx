@@ -1,21 +1,16 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, Menu, MenuItem,  Paper, Grid, Avatar, AppBar, Toolbar, List, CssBaseline, Typography, Divider, IconButton, ListItem, ListItemIcon, ListItemText, Tooltip,} from '@material-ui/core';
+import { Drawer, Grid, AppBar, Toolbar,CssBaseline, Typography, Divider, IconButton, Tooltip,} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Badge from "@material-ui/core/Badge";
-import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import InsertChartIcon from '@material-ui/icons/InsertChart';
-import PersonIcon from '@material-ui/icons/Person';
-import HelpIcon from '@material-ui/icons/Help';
-import styles from './NavBar.module.css';
 
 import {useHistory} from 'react-router-dom';
-import profileImage from '../../Images/profile.jpg';
+import Notifications from "./Notifications/Notifications.component";
+import ProfileButton from "./ProfileButton/ProfileButton.component";
+import SideBar from "./SideBar/SideBar.component";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -79,28 +74,23 @@ const useStyles = makeStyles((theme) => ({
     },
     mainTitle: {
         flex: '1',
-    }
+    },
 }));
 
 
 function NavBar() {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const history = useHistory();
-    const [profileDropdown, setProfileDropDown] = useState(false);
-    const [notificationDropdown, setNotificationDropDown] = useState(false);
     
     const handleDrawerOpen = value => {
         setOpen(!value);
     };
     
-    const handleProfileDropdown = value => {
-        setProfileDropDown(!value);
-    }
-    
-    const handleNotificationDropdown = value => {
-        setNotificationDropDown(!value);
+    const handleMenuItem = value => {
+        history.push(value);
+        setOpen(false);
     }
     
     return (
@@ -123,48 +113,9 @@ function NavBar() {
                     <Typography variant="h6" noWrap className={classes.mainTitle}>Taskr</Typography>
                     <div className={classes.grow} />
                     <div>
-                        <Grid container direction="row">
-                        <Tooltip title='Notifications'>
-                        <IconButton color="inherit" onClick={() => handleNotificationDropdown(notificationDropdown)}>
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsNoneOutlinedIcon />
-                            </Badge>
-                        </IconButton>
-                        </Tooltip>
-                            <Menu id="notification-dropdown" anchorOrigin={{vertical: 'top', horizontal: 1250,}}
-                                  keepMounted
-                                  transformOrigin={{
-                                      vertical: 'top',
-                                      horizontal: 'right',
-                                  }}
-                                  open={notificationDropdown}
-                                  onClose={() => handleNotificationDropdown(notificationDropdown)}>
-                                <MenuItem>Notification 1</MenuItem>
-                                <Divider />
-                                <MenuItem>Notification 2</MenuItem>
-                            </Menu>
-                        <Tooltip title='Profile'>
-                         <Paper elevation={0} className={styles.profileContainer}>
-                             <Grid container direction="row" alignItems="center">
-                                <IconButton onClick={() => handleProfileDropdown(profileDropdown)}>
-                                    <Avatar src={profileImage} />
-                                    <Typography variant="h6">Nick Morgan</Typography>
-                                </IconButton>
-                             </Grid>
-                        </Paper>
-                    </Tooltip>
-                            <Menu id="profile-dropdown" anchorOrigin={{vertical: 'top', horizontal: 'right',}}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={profileDropdown}
-                                onClose={() => handleProfileDropdown(profileDropdown)}>
-                                <MenuItem onClick={() => handleProfileDropdown(profileDropdown)}>Profile</MenuItem>
-                                <Divider />
-                                <MenuItem onClick={() => handleProfileDropdown(profileDropdown)}>Logout</MenuItem>
-                            </Menu>
+                        <Grid container direction="row" alignItems='center'>
+                            <Notifications />
+                            <ProfileButton handleMenuItem={handleMenuItem}/>
                         </Grid>
                     </div>
                 </Toolbar>
@@ -186,51 +137,7 @@ function NavBar() {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
-                    <ListItem button onClick={() => history.push("/")}>
-                        <Tooltip title='Dashboard'>
-                        <ListItemIcon>
-                            <DashboardIcon />
-                        </ListItemIcon>
-                        </Tooltip>
-                        <ListItemText primary="Dashboard" />
-                    </ListItem>
-                    <ListItem button onClick={() => history.push("/tasks")}>
-                        <Tooltip title='Tasks'>
-                        <ListItemIcon>
-                            <FormatListBulletedIcon />
-                        </ListItemIcon>
-                        </Tooltip>
-                        <ListItemText primary="Tasks" />
-                    </ListItem>
-                    <ListItem button onClick={() => history.push("/analytics")}>
-                        <Tooltip title='Analytics'>
-                        <ListItemIcon>
-                            <InsertChartIcon />
-                        </ListItemIcon>
-                        </Tooltip>
-                        <ListItemText primary="Analytics" />
-                    </ListItem>
-                </List>
-                <Divider />
-                <List>
-                    <ListItem button onClick={() => history.push("/user-profile")}>
-                        <Tooltip title='User Profile'>
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        </Tooltip>
-                        <ListItemText primary="User Profile" />
-                    </ListItem>
-                    <ListItem button onClick={() => history.push("/help")}>
-                        <Tooltip title='Help'>
-                        <ListItemIcon>
-                            <HelpIcon />
-                        </ListItemIcon>
-                        </Tooltip>
-                        <ListItemText primary="Help" />
-                    </ListItem>
-                </List>
+                <SideBar handleMenuItem={handleMenuItem} />
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbar} />

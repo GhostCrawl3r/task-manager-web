@@ -1,0 +1,16 @@
+.container {
+    width: 20vw;
+    height: auto;
+}
+
+.button {
+    width:15vw;
+}
+
+.text {
+    padding: 0 5px;
+}
+
+.logo {
+    margin-left: -20px;
+}
