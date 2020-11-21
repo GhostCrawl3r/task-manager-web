@@ -92,6 +92,8 @@ function NavBar() {
         setOpen(false);
     }
 
+    console.log(window.origin);
+    
     return (
         <div className={classes.root}>
             <CssBaseline />

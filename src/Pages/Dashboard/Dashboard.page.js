@@ -24,10 +24,10 @@ const Dashboard = () => {
                 <TopBoxes/>
             {/*Graphs*/}
             <Grid container direction='row' spacing={2}>
-                <Grid container xs={8}>
+                <Grid container item xs={8}>
                     <LineChartComponent />
                 </Grid>
-                <Grid container xs={4}>
+                <Grid container item xs={4}>
                     <PieChartCom />
                 </Grid>
             </Grid>
