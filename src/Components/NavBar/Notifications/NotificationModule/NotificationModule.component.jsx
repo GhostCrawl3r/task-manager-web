@@ -9,7 +9,6 @@ const NotificationModule = () => {
         console.log(e);
     }
     
-    
     return (
         <Container className={styles.container}>
             <Grid container direction='column'>

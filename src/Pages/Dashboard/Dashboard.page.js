@@ -32,7 +32,6 @@ const Dashboard = () => {
                 </Grid>
             </Grid>
             <br/>
-            <br/>
         </div>
     );
 };

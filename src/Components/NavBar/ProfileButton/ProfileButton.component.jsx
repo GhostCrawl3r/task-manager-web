@@ -1,5 +1,16 @@
 import React, {useState} from 'react';
-import { Avatar, Divider, Grid, IconButton, MenuItem, Paper, Popover, Tooltip, Typography } from "@material-ui/core";
+import {
+    Avatar,
+    Container,
+    Divider,
+    Grid,
+    IconButton,
+    MenuItem,
+    Paper,
+    Popover,
+    Tooltip,
+    Typography
+} from "@material-ui/core";
 import styles from "./ProfileButton.module.css";
 import profileImage from "../../../Images/profile.jpg";
 
@@ -40,11 +51,16 @@ const ProfileButton = ({handleMenuItem}) => {
                     vertical: 'bottom',
                     horizontal: 'center',
                 }}
-                className={styles.notificationPop}
-            >
-                <MenuItem onClick={() => handleMenuItem('/user-profile')}>Profile</MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClick}>Logout</MenuItem>
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                className={styles.notificationPop}>
+                <Container>
+                    <MenuItem onClick={() => handleMenuItem('/user-profile')}>Profile</MenuItem>
+                    <Divider />
+                    <MenuItem onClick={handleClick}>Logout</MenuItem>
+                </Container>
             </Popover>
         </div>
     );

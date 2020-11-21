@@ -12,7 +12,6 @@ import ProfileButton from "./ProfileButton/ProfileButton.component";
 import SideBar from "./SideBar/SideBar.component";
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -70,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: theme.spacing(2),
     },
     mainTitle: {
         flex: '1',
@@ -92,21 +91,15 @@ function NavBar() {
         history.push(value);
         setOpen(false);
     }
-    
+
     return (
         <div className={classes.root}>
             <CssBaseline />
             <AppBar position="fixed" color="default" className={clsx(classes.appBar, {[classes.appBarShift]: open})}>
                 <Toolbar>
                     <Tooltip title='Menu'>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={() => handleDrawerOpen(open)}
-                        edge="start"
-                        className={clsx(classes.menuButton, {
-                            [classes.hide]: open,
-                        })}>
+                    <IconButton color="inherit" aria-label="open drawer" onClick={() => handleDrawerOpen(open)}
+                        edge="start" className={clsx(classes.menuButton, {[classes.hide]: open,})}>
                         <MenuIcon />
                     </IconButton>
                     </Tooltip>
@@ -120,17 +113,8 @@ function NavBar() {
                     </div>
                 </Toolbar>
             </AppBar>
-            <Drawer variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
-                    }),
-                }}>
+            <Drawer variant="permanent" className={clsx(classes.drawer, {[classes.drawerOpen]: open, [classes.drawerClose]: !open,})}
+                classes={{paper: clsx({[classes.drawerOpen]: open, [classes.drawerClose]: !open,}),}}>
                 <div className={classes.toolbar}>
                     <IconButton onClick={() => handleDrawerOpen(open)}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -139,10 +123,9 @@ function NavBar() {
                 <Divider />
                 <SideBar handleMenuItem={handleMenuItem} />
             </Drawer>
-            <main className={classes.content}>
-                <div className={classes.toolbar} />
-
-            </main>
+                <main className={classes.content}>
+                    <div className={classes.toolbar} />
+                </main>
         </div>
     );
 }
