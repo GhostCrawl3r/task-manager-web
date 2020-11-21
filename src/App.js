@@ -21,39 +21,37 @@ function App() {
     const history = useHistory();
     
     useEffect(() => {
-        if(screenSize < 770) {
+        if(screenSize < 1080) {
             setMobile(true);
         }
     }, [screenSize])
     
   return (
-     <div>
          <Router>
-         {isLoggedIn ? (
-                     <div>
-                         {mobile ? (
-                             <div>
-                                 <h1>Sorry!</h1>
-                                 <p>This application is intended for web devices only! - You can't view this on tablet or mobile.</p>
-                             </div>
-                         ) : (
-                             <div>
-                                 <NavBar />
-                                 <Switch>
-                                     <Route path="/" exact component={Dashboard} />
-                                     <Route path="/tasks" exact component={Tasks} />
-                                     <Route path="/analytics" exact component={Analytics} />
-                                     <Route path="/user-profile" exact component={UserProfile} />
-                                     <Route path="/help" exact component={Help} />
-                                 </Switch>
-                             </div>
-                         )}
-                     </div>
-         ) : (
-             <Route path="/" exact component={Login} />
-         )}
-            </Router>
-     </div>
+             {mobile ? (
+                 <div>
+                     <h1>Sorry!</h1>
+                     <p>This application is intended for web devices only! - You can't view this on tablet or mobile.</p>
+                 </div>
+             ) : (
+         <div>
+             {isLoggedIn ? (
+                 <div>
+                     <NavBar />
+                     <Switch>
+                         <Route path="/" exact component={Dashboard} />
+                         <Route path="/tasks" exact component={Tasks} />
+                         <Route path="/analytics" exact component={Analytics} />
+                         <Route path="/user-profile" exact component={UserProfile} />
+                         <Route path="/help" exact component={Help} />
+                     </Switch>
+                 </div>
+             ) : (
+                 <Route path="/" exact component={Login} />
+             )}
+         </div>
+                 )}
+         </Router>
   );
 }
 
