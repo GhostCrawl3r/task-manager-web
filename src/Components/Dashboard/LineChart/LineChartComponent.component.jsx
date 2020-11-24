@@ -1,30 +1,39 @@
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { Card, Typography, Grid } from '@material-ui/core';
+import { Line } from 'react-chartjs-2';
 
 import styles from './LineChartComponent.module.css';
 
-const data = [
-    {name: 'Monday', uv: 400},
-    {name: 'Tuesday', uv: 600},
-    {name: 'Wednesday', uv: 700, pv: 2400, amt: 2400},
-    {name: 'Thursday', uv: 200, pv: 2400, amt: 2400},
-    {name: 'Friday', uv: 100, pv: 2400, amt: 2400},
-    {name: 'Saturday', uv: 50, pv: 2400, amt: 2400},
-    {name: 'Sunday', uv: 900, pv: 2400, amt: 2400},
-];
-
 const LineChartComponent = () => {
+    
+    const  data = {
+        labels: ['Janurary', 'Feburary', 'March', 'April', 'May', 'June', 'July','August', 'September', 'October', 'November', 'December'],
+        datasets:[
+            {
+                label:'Tasks Complete',
+                data:[
+                    10, 15, 20, 25, 30, 35, 40, 45, 50, 20, 70, 100
+                ],
+                backgroundColor:[
+                    'rgba(24,255,0, 0.7)'
+                ]
+            },
+            {
+                label:'Tasks Pending',
+                data:[
+                    5, 12, 4, 90, 70, 35, 80, 25, 10, 50, 10, 30
+                ],
+                backgroundColor:[
+                    'rgba(255,162,0, 0.7)'
+                ]
+            }
+        ]
+    };
+    
     return (
         <Card className={styles.container}>
             <Grid container direction='row' justify='center'>
                 <Typography variant={"h6"} align={"center"} gutterBottom>Total Tasks Complete Each Month</Typography>
-                <LineChart width={700} height={300} data={data} className={styles.chart}>
-                    <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-                    <CartesianGrid stroke="#ccc" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                </LineChart>
+                <Line  type='line' data={data} options={{ maintainAspectRatio: true }} />
             </Grid>
         </Card>
     )

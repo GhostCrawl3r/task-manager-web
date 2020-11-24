@@ -21,7 +21,7 @@ function App() {
     const history = useHistory();
     
     useEffect(() => {
-        if(screenSize < 1080) {
+        if(screenSize < 950) {
             setMobile(true);
         }
     }, [screenSize])

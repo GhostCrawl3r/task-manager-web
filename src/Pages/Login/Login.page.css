@@ -1,0 +1,9 @@
+.container {
+    margin-top: 50vh!important;
+    background-color: red;
+}
+
+.card {
+    width:10vw!important;
+    height: 30vh!important;
+}
