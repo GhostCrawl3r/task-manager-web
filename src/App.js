@@ -39,7 +39,7 @@ function App() {
                  <div>
                      <NavBar />
                      <Switch>
-                         <Route path="/" exact component={Dashboard} />
+                         <Route path="/dashboard" exact component={Dashboard} />
                          <Route path="/tasks" exact component={Tasks} />
                          <Route path="/analytics" exact component={Analytics} />
                          <Route path="/user-profile" exact component={UserProfile} />

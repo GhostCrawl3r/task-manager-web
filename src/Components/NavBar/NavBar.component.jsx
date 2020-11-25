@@ -11,6 +11,9 @@ import Notifications from "./Notifications/Notifications.component";
 import ProfileButton from "./ProfileButton/ProfileButton.component";
 import SideBar from "./SideBar/SideBar.component";
 
+import Dashboard from "../../Pages/Dashboard/Dashboard.page";
+import {useLocation} from 'react-router-dom';
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -82,6 +85,7 @@ function NavBar() {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const history = useHistory();
+    const location = useLocation();
     
     const handleDrawerOpen = value => {
         setOpen(!value);
@@ -125,6 +129,9 @@ function NavBar() {
             </Drawer>
                 <main className={classes.content}>
                     <div className={classes.toolbar} />
+                    {location.pathname == '/'
+                    ? <Dashboard />
+                    : null}
                 </main>
         </div>
     );
