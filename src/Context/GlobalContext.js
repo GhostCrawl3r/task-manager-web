@@ -7,7 +7,7 @@ export const TaskContext = React.createContext([]);
 // Add them into a GLobalContext provider like { [...,....], [...,...]} etc
 
 const GlobalContext = ({children}) => {
-    const [isLoggedIn, setLogin] = useState(true);
+    const [isLoggedIn, setLogin] = useState(false);
     const [tasks, setTasks] = useState([]);
     
     // const MasterContext = (UserLoggedIn,  TaskContext) => {

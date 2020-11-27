@@ -1,9 +1,4 @@
-.container {
-    margin-top: 50vh!important;
-    background-color: red;
-}
-
-.card {
-    width:10vw!important;
-    height: 30vh!important;
+body {
+    /*background: linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)), url('../../Images/background.jpg'), center;*/
+    /*background-size: cover;*/
 }

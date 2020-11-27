@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './BottomTray.module.css';
-import {makeStyles, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Card} from "@material-ui/core";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Card } from "@material-ui/core";
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };

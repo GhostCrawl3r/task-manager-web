@@ -10,6 +10,7 @@ import BottomTray from "../../Components/Dashboard/BottomTray/BottomTray.compone
 
 
 const Dashboard = () => {
+
     
     return (
         <div className={styles.container}>
