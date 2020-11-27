@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, Typography, Grid } from '@material-ui/core';
 import { Line } from 'react-chartjs-2';
 

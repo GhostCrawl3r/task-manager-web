@@ -7,10 +7,6 @@ import LibraryAddCheckOutlinedIcon from "@material-ui/icons/LibraryAddCheckOutli
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
 const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-        marginTop: 30
-    },
     bullet: {
         display: 'inline-block',
         margin: '0 2px',
@@ -32,7 +28,7 @@ const TopBoxes = () => {
         <div>
             <Grid container direction='row' spacing={2}>
                 <Grid item xs={3}>
-                    <Card className={classes.root}>
+                    <Card className={styles.root}>
                         <CardContent>
                             <Grid container direction='row'>
                                 <Typography className={classes.title} color="textPrimary" gutterBottom>Tasks Created</Typography>
@@ -50,7 +46,7 @@ const TopBoxes = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={3}>
-                    <Card className={classes.root}>
+                    <Card className={styles.root}>
                         <CardContent>
                             <Grid container direction='row'>
                                 <Typography className={classes.title} color="textPrimary" gutterBottom>Tasks Pending</Typography>
@@ -68,7 +64,7 @@ const TopBoxes = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={3}>
-                    <Card className={classes.root}>
+                    <Card className={styles.root}>
                         <CardContent>
                             <Grid container direction='row'>
                                 <Typography className={classes.title} color="textPrimary" gutterBottom>Tasks Complete</Typography>
@@ -86,7 +82,7 @@ const TopBoxes = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={3}>
-                    <Card className={classes.root}>
+                    <Card className={styles.root}>
                         <CardContent>
                             <Grid container direction='row'>
                                 <Typography className={classes.title} color="textPrimary" gutterBottom>Tasks Removed</Typography>

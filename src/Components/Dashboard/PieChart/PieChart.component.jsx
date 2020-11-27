@@ -23,7 +23,7 @@ const PieChartCom = () => {
         <Card className={styles.container}>
             <Grid container direction='column' alignItems={"center"}>
                 <Typography variant='h6' gutterBottom className={styles.title}>30 day breakdown</Typography>
-                <br/><Doughnut data={data} type='doughnut' options={{ maintainAspectRatio: true }} width={200} height={200} className={styles.chart}/>
+                <br/><Doughnut data={data} type='doughnut' width={200} height={180} className={styles.chart}/>
             </Grid>
         </Card>
     );
